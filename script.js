@@ -68,7 +68,7 @@ function use(){
   if (state.noiseActive && !noise.state !== "started"){
     noise.start();
   }
-  if (state.noiseActive && !noise.state === "started"){
+  if (state.noiseActive && noise.state === "started"){
     noise.stop();
   }
   setTimeout(use,100);
