@@ -84,3 +84,6 @@ function setup() {
 }
 
 setup(); // Always remember to call setup()!
+
+Instrument Project by Natalie Green, Aleksandra Czyz, Caorline Wong ,Ketrin Telhaj.
+Our project is Piano Synth with keyboard keys to play the meoldy of Happy Birthday.
