@@ -10,10 +10,16 @@
 
 <!-- Which keys do what? Fill in the table, and add a row for every key or group of keys. -->
 
-| Key | What it does                                                |
-| --- | ----------------------------------------------------------- |
-| `A` | Plays a C4 while you hold it down (the example: replace it) |
-|     |                                                             |
+| Key | What it does                     |
+| --- | ---------------------------------|
+| `C` | Plays a C while you hold it down |
+| `D` | Plays a D while you hold it down |
+| `E` | Plays a E while you hold it down |
+| `F` | Plays a F while you hold it down |
+| `G` | Plays a G while you hold it down |
+| `A` | Plays a A while you hold it down |
+| `H` | Plays a H while you hold it down |
+| `Q` | Plays a cool effect              |
 
 <!-- Anything else a player needs to know: how to get started, combinations of keys, a good thing to try first. -->
 
