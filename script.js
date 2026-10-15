@@ -70,7 +70,7 @@ function use(){
     noise.start();
   }
   if (!state.noiseActive && noise.state === "started"){
-    noise.stop("+3");
+    noise.stop("+1");
   }
   setTimeout(use,100);
 }
