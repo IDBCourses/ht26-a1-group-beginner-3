@@ -39,8 +39,8 @@ const noteG = "G4";
 const keyA = "a";
 const noteA = "A4";
 
-const keyH = "h";
-const noteH = "B4";
+const keyB = "b";
+const noteB = "B4";
 
 const keyNoise = "q";
 // ---------- State ----------
@@ -102,7 +102,7 @@ function keyDown(event) {
     if (pressedKey === keyA){
       synth.triggerAttack(noteA, Tone.now());
     }
-    if (pressedKey === keyH){
+    if (pressedKey === keyB){
       synth.triggerAttack(noteH, Tone.now());
     }
     if (pressedKey === keyNoise){
@@ -135,7 +135,7 @@ function keyUp(event){
     if(releasedKey === keyA){
     synth.triggerRelease(noteA,Tone.now());
   }
-    if(releasedKey === keyH){
+    if(releasedKey === keyB){
     synth.triggerRelease(noteH,Tone.now());
   }
   //Stop noise when q is released
