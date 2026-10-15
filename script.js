@@ -145,7 +145,7 @@ function keyUp(event){
   //Stop noise when q is released
   if(releasedKey === keyNoise){
     state.noiseActive = false;
-    state.noiseStopTime = Tone.now() + 3;
+    state.noiseStopTime = Tone.now() + 1;
   }
 }
 
