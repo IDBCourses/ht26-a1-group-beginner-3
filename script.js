@@ -40,7 +40,7 @@ const keyA = "a";
 const noteA = "A4";
 
 const keyH = "h";
-const noteH = "b4";
+const noteH = "B4";
 
 const keyNoise = "q";
 // ---------- State ----------
@@ -51,7 +51,7 @@ const state = {
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
 const synth = new Tone.PolySynth(Tone.Synth).toDestination();
-const noise = new Tone.nosie("brown").toDestination();
+const noise = new Tone.Noise("brown").toDestination();
 noise.volume.value = -12;
 
 // ---------- Update ----------
@@ -65,14 +65,15 @@ function update() {
 // ---------- Use ----------
 // Use the state to make sound. This is called every 100ms.
 function use(){
-  if (state.noiseActive && !noise.state.running){
+  if (state.noiseActive && !noise.state !== "started"){
     noise.start();
   }
-  if(state.noiseActive && !noise.state.running){
+  if (state.noiseActive && !noise.state === "started"){
     noise.stop();
   }
   setTimeout(use,100);
 }
+
 // ---------- Controls (Event Handlers) ----------
 // Runs every time a key goes down.
 //Author:At1220
@@ -114,28 +115,28 @@ function keyDown(event) {
 // Author:At1220
 function keyUp(event){
   console.log("key up:",event.key);
-  const relasedKey = event.key.toLowCase();
+  const releasedKey = event.key.toLowerCase();
 
-  if(relasedKey === keyC){
-    synth.triggerRelease(noteC,tone.now());
+  if(releasedKey === keyC){
+    synth.triggerRelease(noteC,Tone.now());
   }
-  if(relasedKey === keyD){
-    synth.triggerRelease(noteD,tone.now());
+  if(releasedKey === keyD){
+    synth.triggerRelease(noteD,Tone.now());
   }
-  if(relasedKey === keyE){
-    synth.triggerRelease(noteE,tone.now());
+  if(releasedKey === keyE){
+    synth.triggerRelease(noteE,Tone.now());
   }
-    if(relasedKey === keyF){
-    synth.triggerRelease(noteF,tone.now());
+    if(releasedKey === keyF){
+    synth.triggerRelease(noteF,Tone.now());
   }
-    if(relasedKey === keyG){
-    synth.triggerRelease(noteG,tone.now());
+    if(releasedKey === keyG){
+    synth.triggerRelease(noteG,Tone.now());
   }
-    if(relasedKey === keyA){
-    synth.triggerRelease(noteA,tone.now());
+    if(releasedKey === keyA){
+    synth.triggerRelease(noteA,Tone.now());
   }
-    if(relasedKey === keyH){
-    synth.triggerRelease(noteH,tone.now());
+    if(releasedKey === keyH){
+    synth.triggerRelease(noteH,Tone.now());
   }
   //Stop noise when q is released
   if(releasedKey === keyNoise){
@@ -147,8 +148,6 @@ function keyUp(event){
 // ---------- Setup ----------
 // Setup is run once, at the start of the program. It sets everything up for us!
 function setup() {
-  synth = new Tone.PolySynth(Tone.Synth).toDestination();
-  nosie = new Tone.Noise("brown").toDestination();
   noise.volume.value = -12;
 
   update(); // start the update loop
