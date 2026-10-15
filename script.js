@@ -103,7 +103,7 @@ function keyDown(event) {
       synth.triggerAttack(noteA, Tone.now());
     }
     if (pressedKey === keyB){
-      synth.triggerAttack(noteH, Tone.now());
+      synth.triggerAttack(noteB, Tone.now());
     }
     if (pressedKey === keyNoise){
       state.noiseActive = true;
@@ -136,7 +136,7 @@ function keyUp(event){
     synth.triggerRelease(noteA,Tone.now());
   }
     if(releasedKey === keyB){
-    synth.triggerRelease(noteH,Tone.now());
+    synth.triggerRelease(noteB,Tone.now());
   }
   //Stop noise when q is released
   if(releasedKey === keyNoise){
