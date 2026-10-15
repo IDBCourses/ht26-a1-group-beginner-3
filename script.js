@@ -46,7 +46,8 @@ const keyNoise = "q";
 // ---------- State ----------
 //Author:At1220
 const state = {
-  noiseActive:false
+  noiseActive:false,
+  noiseStopTime:0
 };
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
@@ -68,8 +69,8 @@ function use(){
   if (state.noiseActive && !noise.state !== "started"){
     noise.start();
   }
-  if (state.noiseActive && noise.state === "started"){
-    noise.stop();
+  if (!state.noiseActive && noise.state === "started"){
+    noise.stop("+3");
   }
   setTimeout(use,100);
 }
@@ -108,6 +109,9 @@ function keyDown(event) {
     if (pressedKey === keyNoise){
       state.noiseActive = true;
     }
+    if (event.key.toLowerCase() === "q"){
+      state.noiseActive = true;
+    }
   }
 }
 
@@ -141,6 +145,7 @@ function keyUp(event){
   //Stop noise when q is released
   if(releasedKey === keyNoise){
     state.noiseActive = false;
+    state.noiseStopTime = Tone.now() + 3;
   }
 }
 
