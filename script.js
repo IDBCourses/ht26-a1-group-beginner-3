@@ -164,8 +164,6 @@ function keyUp(event) {
     state.noiseActive = false;
     state.noiseStopTime = Tone.now() + 1;
   }
-  if()
-
 }
 
 // ---------- Setup ----------
