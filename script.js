@@ -95,6 +95,7 @@ function playNote(note) {
   } else {
     synth.triggerAttack(note, Tone.now());
   }
+
 }
 function keyDown(event) {
   Tone.start(); //browsers only allow sound after the player has pressed something
@@ -132,7 +133,7 @@ function keyDown(event) {
     }
     // arthur : as8795
     if (pressedKey === keyPluckSynth) {
-      state.PluckSynthActive = !state.PluckSynthActive;
+      state.PluckSynthActive = true;
     }
   }
 }
@@ -169,6 +170,10 @@ function keyUp(event) {
     state.noiseActive = false;
     state.noiseStopTime = Tone.now() + 1;
   }
+   // stop the changes in the notes when 3 is relased
+  if (releasedKey === keyPluckSynth) {
+      state.PluckSynthActive = false;
+   }
 }
 
 // ---------- Setup ----------
