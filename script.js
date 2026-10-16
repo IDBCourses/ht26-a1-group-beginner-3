@@ -125,6 +125,7 @@ function keyDown(event) {
     }
     // Author: as6395
     if (event.Key === keyDrum) {
+      console.log("Drum key pressed");
       drum.triggerAttackRelease("C2","8n");
     }
 
@@ -164,14 +165,12 @@ function keyUp(event) {
     state.noiseStopTime = Tone.now() + 1;
   }
 
-
 }
 
 // ---------- Setup ----------
 // Setup is run once, at the start of the program. It sets everything up for us!
 function setup() {
   noise.volume.value = -12;
-  chorus.volume.value = -12;
 
   update(); // start the update loop
   use(); // start the use loop
