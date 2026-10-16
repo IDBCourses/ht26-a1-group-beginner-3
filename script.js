@@ -46,8 +46,8 @@ const keyNoise = "q";
 // ---------- State ----------
 //Author:At1220
 const state = {
-  noiseActive:false,
-  noiseStopTime:0
+  noiseActive: false,
+  noiseStopTime: 0,
 };
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
@@ -65,14 +65,14 @@ function update() {
 
 // ---------- Use ----------
 // Use the state to make sound. This is called every 100ms.
-function use(){
-  if (state.noiseActive && noise.state !== "started"){
+function use() {
+  if (state.noiseActive && noise.state !== "started") {
     noise.start();
   }
-  if (!state.noiseActive && noise.state === "started"){
+  if (!state.noiseActive && noise.state === "started") {
     noise.stop("+1");
   }
-  setTimeout(use,100);
+  setTimeout(use, 100);
 }
 
 // ---------- Controls (Event Handlers) ----------
@@ -81,35 +81,35 @@ function use(){
 function keyDown(event) {
   Tone.start(); //browsers only allow sound after the player has pressed something
   //Holding a key down sends keydown again and again. only react to the first one.
-  if (event.repeat === false){
+  if (event.repeat === false) {
     console.log("Key down:", event.key);
     const pressedKey = event.key.toLowerCase();
 
-    if (pressedKey === keyC){
+    if (pressedKey === keyC) {
       synth.triggerAttack(noteC, Tone.now());
     }
-    if (pressedKey === keyD){
+    if (pressedKey === keyD) {
       synth.triggerAttack(noteD, Tone.now());
     }
-    if (pressedKey === keyE){
+    if (pressedKey === keyE) {
       synth.triggerAttack(noteE, Tone.now());
     }
-    if (pressedKey === keyF){
+    if (pressedKey === keyF) {
       synth.triggerAttack(noteF, Tone.now());
     }
-    if (pressedKey === keyG){
+    if (pressedKey === keyG) {
       synth.triggerAttack(noteG, Tone.now());
     }
-    if (pressedKey === keyA){
+    if (pressedKey === keyA) {
       synth.triggerAttack(noteA, Tone.now());
     }
-    if (pressedKey === keyB){
+    if (pressedKey === keyB) {
       synth.triggerAttack(noteB, Tone.now());
     }
-    if (pressedKey === keyNoise){
+    if (pressedKey === keyNoise) {
       state.noiseActive = true;
     }
-    if (event.key.toLowerCase() === "q"){
+    if (event.key.toLowerCase() === "q") {
       state.noiseActive = true;
     }
   }
@@ -117,38 +117,37 @@ function keyDown(event) {
 
 // Runs every time a key comes up.
 // Author:At1220
-function keyUp(event){
-  console.log("key up:",event.key);
+function keyUp(event) {
+  console.log("key up:", event.key);
   const releasedKey = event.key.toLowerCase();
 
-  if(releasedKey === keyC){
-    synth.triggerRelease(noteC,Tone.now());
+  if (releasedKey === keyC) {
+    synth.triggerRelease(noteC, Tone.now());
   }
-  if(releasedKey === keyD){
-    synth.triggerRelease(noteD,Tone.now());
+  if (releasedKey === keyD) {
+    synth.triggerRelease(noteD, Tone.now());
   }
-  if(releasedKey === keyE){
-    synth.triggerRelease(noteE,Tone.now());
+  if (releasedKey === keyE) {
+    synth.triggerRelease(noteE, Tone.now());
   }
-    if(releasedKey === keyF){
-    synth.triggerRelease(noteF,Tone.now());
+  if (releasedKey === keyF) {
+    synth.triggerRelease(noteF, Tone.now());
   }
-    if(releasedKey === keyG){
-    synth.triggerRelease(noteG,Tone.now());
+  if (releasedKey === keyG) {
+    synth.triggerRelease(noteG, Tone.now());
   }
-    if(releasedKey === keyA){
-    synth.triggerRelease(noteA,Tone.now());
+  if (releasedKey === keyA) {
+    synth.triggerRelease(noteA, Tone.now());
   }
-    if(releasedKey === keyB){
-    synth.triggerRelease(noteB,Tone.now());
+  if (releasedKey === keyB) {
+    synth.triggerRelease(noteB, Tone.now());
   }
   //Stop noise when q is released
-  if(releasedKey === keyNoise){
+  if (releasedKey === keyNoise) {
     state.noiseActive = false;
     state.noiseStopTime = Tone.now() + 1;
   }
 }
-
 
 // ---------- Setup ----------
 // Setup is run once, at the start of the program. It sets everything up for us!
