@@ -124,7 +124,7 @@ function keyDown(event) {
       state.noiseActive = true;
     }
     // Author: as6395
-    if (event.Key === keyDrum) {
+    if (pressedKey === keyDrum) {
       console.log("Drum key pressed");
       drum.triggerAttackRelease("C2","8n");
     }
