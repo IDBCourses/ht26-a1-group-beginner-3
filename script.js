@@ -126,7 +126,7 @@ function keyDown(event) {
     // Author: as6395
     if (pressedKey === keyDrum) {
       console.log("Drum key pressed");
-      drum.triggerAttackRelease("C2","8n");
+      drum.triggerAttackRelease("C2","2n");
     }
 
   }
@@ -164,6 +164,7 @@ function keyUp(event) {
     state.noiseActive = false;
     state.noiseStopTime = Tone.now() + 1;
   }
+  if()
 
 }
 
