@@ -43,17 +43,27 @@ const keyB = "b";
 const noteB = "B4";
 
 const keyNoise = "q";
+//Author: as6395
+const keyChorus = "4";
 // ---------- State ----------
 //Author:At1220
 const state = {
   noiseActive: false,
   noiseStopTime: 0,
 };
+//Author: as6395
+const state2 = {
+  chorusActive: false,
+  chorusStopTime: 0,
+};
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
 const synth = new Tone.PolySynth(Tone.Synth).toDestination();
 const noise = new Tone.Noise("brown").toDestination();
 noise.volume.value = -12;
+// Author: as6395
+const chorus = new Tone.Chorus(). toDestination();
+chorus.volume.value = -12;
 
 // ---------- Update ----------
 // Update the state. This is called every 100ms.
@@ -72,6 +82,15 @@ function use() {
   if (!state.noiseActive && noise.state === "started") {
     noise.stop("+1");
   }
+// Author: as6395
+if (state2.chorusActive && chorus.state !== "started") {
+  chorus.start();
+}
+if(!state2.chorusActive && chorus.state ==="started") {
+  chorus.stop("+2")
+}
+
+
   setTimeout(use, 100);
 }
 
@@ -112,6 +131,14 @@ function keyDown(event) {
     if (event.key.toLowerCase() === "q") {
       state.noiseActive = true;
     }
+    // Author: as6395
+    if (pressedKey === keyChorus) {
+      state2.chorusActive = true;
+    }
+    if(event.key.toLowerCase() === "4"){
+      state2.chorusActive =true;
+    }
+
   }
 }
 
@@ -147,12 +174,19 @@ function keyUp(event) {
     state.noiseActive = false;
     state.noiseStopTime = Tone.now() + 1;
   }
+  // Author: as6395
+  if (releasedKey === keyChorus){
+    state2.chorusActive = false;
+    state2.chorusStopTime= Tone.now()+ 2;
+  }
+
 }
 
 // ---------- Setup ----------
 // Setup is run once, at the start of the program. It sets everything up for us!
 function setup() {
   noise.volume.value = -12;
+  chorus.volume.value = -12;
 
   update(); // start the update loop
   use(); // start the use loop
