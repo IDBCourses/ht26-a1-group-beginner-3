@@ -44,7 +44,7 @@ const noteB = "B4";
 
 const keyNoise = "q";
 //Author: as6395
-const keyChorus = "4";
+const keyDrum = "4";
 // ---------- State ----------
 //Author:At1220
 const state = {
@@ -53,8 +53,8 @@ const state = {
 };
 //Author: as6395
 const state2 = {
-  chorusActive: false,
-  chorusStopTime: 0,
+  drumActive: false,
+  drumStopTime: 0,
 };
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
@@ -62,13 +62,13 @@ const synth = new Tone.PolySynth(Tone.Synth).toDestination();
 const noise = new Tone.Noise("brown").toDestination();
 noise.volume.value = -12;
 // Author: as6395
-const chorus = new Tone.Chorus(). toDestination();
-chorus.volume.value = -12;
+const drum = new Tone.MembraneSynth().toDestination();
+drum.volume.value = -12;
 
 // ---------- Update ----------
 // Update the state. This is called every 100ms.
 function update() {
-  // Example: replace this with your own instrument.
+
 
   setTimeout(update, 100); // call update() again in 100 milliseconds
 }
@@ -82,14 +82,6 @@ function use() {
   if (!state.noiseActive && noise.state === "started") {
     noise.stop("+1");
   }
-// Author: as6395
-if (state2.chorusActive && chorus.state !== "started") {
-  chorus.start();
-}
-if(!state2.chorusActive && chorus.state ==="started") {
-  chorus.stop("+2")
-}
-
 
   setTimeout(use, 100);
 }
@@ -132,11 +124,8 @@ function keyDown(event) {
       state.noiseActive = true;
     }
     // Author: as6395
-    if (pressedKey === keyChorus) {
-      state2.chorusActive = true;
-    }
-    if(event.key.toLowerCase() === "4"){
-      state2.chorusActive =true;
+    if (event.Key === keyDrum) {
+      drum.triggerAttackRelease("C2","8n");
     }
 
   }
@@ -174,11 +163,7 @@ function keyUp(event) {
     state.noiseActive = false;
     state.noiseStopTime = Tone.now() + 1;
   }
-  // Author: as6395
-  if (releasedKey === keyChorus){
-    state2.chorusActive = false;
-    state2.chorusStopTime= Tone.now()+ 2;
-  }
+
 
 }
 
