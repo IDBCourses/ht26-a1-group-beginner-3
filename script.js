@@ -66,7 +66,7 @@ function update() {
 // ---------- Use ----------
 // Use the state to make sound. This is called every 100ms.
 function use(){
-  if (state.noiseActive && !noise.state !== "started"){
+  if (state.noiseActive && noise.state !== "started"){
     noise.start();
   }
   if (!state.noiseActive && noise.state === "started"){
