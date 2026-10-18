@@ -41,6 +41,7 @@ const noteA = "A4";
 
 const keyB = "b";
 const noteB = "B4";
+const notead = "B2";
 
 const keyNoise = "q";
 // ---------- State ----------
