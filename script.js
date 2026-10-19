@@ -42,24 +42,41 @@ const noteA = "A4";
 const keyB = "b";
 const noteB = "B4";
 
-const keyNoise = "q";
+//Author: At1220
+const keyNoise = "1";
+
 //Author: as6395
 const keyDrum = "4";
+
 //Author:As8795
 const keyPluckSynth = "3";
+
+//Author:ao5056
+const keyReverb = "2";
+
 // ---------- State ----------
+
 //Author:At1220
 const state = {
   noiseActive: false,
   noiseStopTime: 0,
+
   //Author:As8795
   PluckSynthActive: false,
   PluckSynthStopTime: 0,
 };
+
 //Author: as6395
 const state2 = {
   drumActive: false,
   drumStopTime: 0,
+};
+
+//Author: ao5056
+const state4 = {
+  noiseActive: false,
+  noiseStopTime: 0,
+  reverbActive: false,
 };
 
 // ---------- Sound ----------
@@ -67,12 +84,28 @@ const state2 = {
 const synth = new Tone.PolySynth(Tone.Synth).toDestination();
 const noise = new Tone.Noise("brown").toDestination();
 noise.volume.value = -12;
+
 //Author:As8795
 const PluckSynth = new Tone.PluckSynth().toDestination();
 PluckSynth.volume.value = -12;
+
 // Author: as6395
 const drum = new Tone.MembraneSynth().toDestination();
 drum.volume.value = -12;
+
+//author:ao5056
+const reverb = new Tone.Reverb({
+  decay: 3,       // how long
+  preDelay: 0.01, // delay
+  wet: 1          // on 0-1 scale
+}).toDestination();
+
+//author:a05056
+const reverbSource = new Tone.NoiseSynth({
+  noise: { type: "white" },
+  envelope: { attack: 0.1, decay: 0.2, sustain: 1, release: 0.5 }
+}).connect(reverb);
+reverbSource.volume.value = -12;
 
 // ---------- Update ----------
 // Update the state. This is called every 100ms.
@@ -139,7 +172,7 @@ function keyDown(event) {
     if (pressedKey === keyNoise) {
       state.noiseActive = true;
     }
-    if (event.key.toLowerCase() === "q") {
+    if (event.key.toLowerCase() === "1") {
       state.noiseActive = true;
     }
     // arthur : as8795
@@ -151,7 +184,11 @@ function keyDown(event) {
       console.log("Drum key pressed");
       drum.triggerAttackRelease("C2","2n");
     }
-
+    // Author: ao5056
+    // when key is pressed, the effect is on
+    if (pressedKey === keyReverb) {
+      reverbSource.triggerAttack();
+    }
   }
 }
 
@@ -182,7 +219,7 @@ function keyUp(event) {
   if (releasedKey === keyB) {
     synth.triggerRelease(noteB, Tone.now());
   }
-  //Stop noise when q is released
+  //Stop noise when 1 is released
   if (releasedKey === keyNoise) {
     state.noiseActive = false;
     state.noiseStopTime = Tone.now() + 1;
@@ -191,12 +228,18 @@ function keyUp(event) {
   if (releasedKey === keyPluckSynth) {
       state.PluckSynthActive = false;
    }
+   // Author: ao5056
+  // when key is released, the effect is off
+  if (releasedKey === keyReverb) {
+    reverbSource.triggerRelease();
+  }
 }
 
 // ---------- Setup ----------
 // Setup is run once, at the start of the program. It sets everything up for us!
-function setup() {
+async function setup() {
   noise.volume.value = -12;
+  await reverb.ready;
 
   update(); // start the update loop
   use(); // start the use loop
