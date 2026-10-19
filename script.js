@@ -45,22 +45,31 @@ const noteB = "B4";
 const keyNoise = "q";
 //Author: as6395
 const keyDrum = "4";
+//Author:As8795
+const keyPluckSynth = "3";
 // ---------- State ----------
 //Author:At1220
 const state = {
   noiseActive: false,
   noiseStopTime: 0,
+  //Author:As8795
+  PluckSynthActive: false,
+  PluckSynthStopTime: 0,
 };
 //Author: as6395
 const state2 = {
   drumActive: false,
   drumStopTime: 0,
 };
+
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
 const synth = new Tone.PolySynth(Tone.Synth).toDestination();
 const noise = new Tone.Noise("brown").toDestination();
 noise.volume.value = -12;
+//Author:As8795
+const PluckSynth = new Tone.PluckSynth().toDestination();
+PluckSynth.volume.value = -12;
 // Author: as6395
 const drum = new Tone.MembraneSynth().toDestination();
 drum.volume.value = -12;
@@ -85,10 +94,20 @@ function use() {
 
   setTimeout(use, 100);
 }
+// arthur as8795
 
 // ---------- Controls (Event Handlers) ----------
 // Runs every time a key goes down.
 //Author:At1220
+//arthur : as8795 function plucksynth
+function playNote(note) {
+  if (state.PluckSynthActive) {
+    PluckSynth.triggerAttackRelease(note, 0.25);
+  } else {
+    synth.triggerAttack(note, Tone.now());
+  }
+
+}
 function keyDown(event) {
   Tone.start(); //browsers only allow sound after the player has pressed something
   //Holding a key down sends keydown again and again. only react to the first one.
@@ -97,31 +116,35 @@ function keyDown(event) {
     const pressedKey = event.key.toLowerCase();
 
     if (pressedKey === keyC) {
-      synth.triggerAttack(noteC, Tone.now());
+      playNote(noteC);
     }
     if (pressedKey === keyD) {
-      synth.triggerAttack(noteD, Tone.now());
+      playNote(noteD);
     }
     if (pressedKey === keyE) {
-      synth.triggerAttack(noteE, Tone.now());
+      playNote(noteE);
     }
     if (pressedKey === keyF) {
-      synth.triggerAttack(noteF, Tone.now());
+      playNote(noteF);
     }
     if (pressedKey === keyG) {
-      synth.triggerAttack(noteG, Tone.now());
+      playNote(noteG);
     }
     if (pressedKey === keyA) {
-      synth.triggerAttack(noteA, Tone.now());
+      playNote(noteA);
     }
     if (pressedKey === keyB) {
-      synth.triggerAttack(noteB, Tone.now());
+      playNote(noteB);
     }
     if (pressedKey === keyNoise) {
       state.noiseActive = true;
     }
     if (event.key.toLowerCase() === "q") {
       state.noiseActive = true;
+    }
+    // arthur : as8795
+    if (pressedKey === keyPluckSynth) {
+      state.PluckSynthActive = true;
     }
     // Author: as6395
     if (pressedKey === keyDrum) {
@@ -164,6 +187,10 @@ function keyUp(event) {
     state.noiseActive = false;
     state.noiseStopTime = Tone.now() + 1;
   }
+   // stop the changes in the notes when 3 is relased
+  if (releasedKey === keyPluckSynth) {
+      state.PluckSynthActive = false;
+   }
 }
 
 // ---------- Setup ----------
