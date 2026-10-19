@@ -1,8 +1,13 @@
 # Our instrument
 
 **Play it here:** <!-- Paste your GitHub Pages link here, e.g. https://idbcourses.github.io/ht26-a1-group-01/ -->
+https://idbcourses.github.io/ht26-a1-group-beginner-3/
 
 **Group:** <!-- Names of everyone in the group -->
+Ketrin Telhaj
+Aleksandra Czyz
+Natalie Green
+Caroline Wang
 
 <!-- One or two sentences: what kind of instrument is it, and what is it like to play? -->
 
@@ -10,16 +15,19 @@
 
 <!-- Which keys do what? Fill in the table, and add a row for every key or group of keys. -->
 
-| Key | What it does                     |
-| --- | ---------------------------------|
-| `C` | Plays a C while you hold it down |
-| `D` | Plays a D while you hold it down |
-| `E` | Plays a E while you hold it down |
-| `F` | Plays a F while you hold it down |
-| `G` | Plays a G while you hold it down |
-| `A` | Plays a A while you hold it down |
-| `H` | Plays a H while you hold it down |
-| `Q` | Plays a cool effect              |
+| Key | What it does                                 |
+| --- | ---------------------------------------------|
+| `C` | Plays a C while you hold it down             |
+| `D` | Plays a D while you hold it down             |
+| `E` | Plays a E while you hold it down             |
+| `F` | Plays a F while you hold it down             |
+| `G` | Plays a G while you hold it down             |
+| `A` | Plays a A while you hold it down             |
+| `H` | Plays a H while you hold it down             |
+| `1` | Plays Noise effect in the background         |
+| `2` | Plays Reverb effect in the background        |
+| `3` | Changes the sound to Pluck Synth effect      |
+| `4` | Plays a Drum effect                          |
 
 <!-- Anything else a player needs to know: how to get started, combinations of keys, a good thing to try first. -->
 
