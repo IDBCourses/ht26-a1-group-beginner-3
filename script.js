@@ -142,6 +142,16 @@ function keyDown(event) {
     if (event.key.toLowerCase() === "q") {
       state.noiseActive = true;
     }
+    // arthur : as8795
+    if (pressedKey === keyPluckSynth) {
+      state.PluckSynthActive = true;
+    }
+    // Author: as6395
+    if (pressedKey === keyDrum) {
+      console.log("Drum key pressed");
+      drum.triggerAttackRelease("C2","2n");
+    }
+
   }
 }
 
