@@ -43,6 +43,8 @@ const keyB = "b";
 const noteB = "B4";
 
 const keyNoise = "q";
+//Author: as6395
+const keyDrum = "4";
 //Author:As8795
 const keyPluckSynth = "3";
 // ---------- State ----------
@@ -54,6 +56,11 @@ const state = {
   PluckSynthActive: false,
   PluckSynthStopTime: 0,
 };
+//Author: as6395
+const state2 = {
+  drumActive: false,
+  drumStopTime: 0,
+};
 
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
@@ -63,11 +70,14 @@ noise.volume.value = -12;
 //Author:As8795
 const PluckSynth = new Tone.PluckSynth().toDestination();
 PluckSynth.volume.value = -12;
+// Author: as6395
+const drum = new Tone.MembraneSynth().toDestination();
+drum.volume.value = -12;
 
 // ---------- Update ----------
 // Update the state. This is called every 100ms.
 function update() {
-  // Example: replace this with your own instrument.
+
 
   setTimeout(update, 100); // call update() again in 100 milliseconds
 }
@@ -81,6 +91,7 @@ function use() {
   if (!state.noiseActive && noise.state === "started") {
     noise.stop("+1");
   }
+
   setTimeout(use, 100);
 }
 // arthur as8795
@@ -130,10 +141,6 @@ function keyDown(event) {
     }
     if (event.key.toLowerCase() === "q") {
       state.noiseActive = true;
-    }
-    // arthur : as8795
-    if (pressedKey === keyPluckSynth) {
-      state.PluckSynthActive = true;
     }
   }
 }
